@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
     await showModalBottomSheet(
       context: ctx,
       isScrollControlled: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       builder: (ctx) {
         return const NewCategory();
       },
