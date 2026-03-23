@@ -47,7 +47,14 @@ class HomePage extends StatelessWidget {
               child: ListView(
                 children: [
                   CardCategory(
-                    category: Category(id: "1", name: "Filmes"),
+                    category: Category(
+                      id: "1",
+                      name: "Filmes",
+                      filePath: "assets/bg-filmes.jpg",
+                    ),
+                  ),
+                  CardCategory(
+                    category: Category(id: "2", name: "Series"),
                   ),
                 ],
               ),

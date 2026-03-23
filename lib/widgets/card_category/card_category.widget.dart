@@ -15,6 +15,12 @@ class CardCategory extends StatelessWidget {
         shadowColor: primaryColor,
         child: Container(
           decoration: BoxDecoration(
+            image: category.filePath != null
+                ? DecorationImage(
+                    image: AssetImage(category.filePath!),
+                    fit: BoxFit.cover,
+                  )
+                : null,
             gradient: LinearGradient(
               colors: [
                 primaryColor.withValues(alpha: 0.8),
@@ -27,7 +33,16 @@ class CardCategory extends StatelessWidget {
           child: InkWell(
             splashColor: secondaryColor.withValues(alpha: 0.6),
             onTap: () {},
-            child: Center(child: Text(category.name)),
+            child: Center(
+              child: Text(
+                category.name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ),
         ),
       ),
