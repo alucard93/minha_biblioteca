@@ -18,7 +18,7 @@ class CardCategory extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 primaryColor.withValues(alpha: 0.8),
-                primaryColor.withValues(alpha: 0.4),
+                secondaryColor.withValues(alpha: 0.4),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
