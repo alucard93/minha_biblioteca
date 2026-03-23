@@ -13,10 +13,22 @@ class CardCategory extends StatelessWidget {
       child: Card(
         elevation: 10,
         shadowColor: primaryColor,
-        child: InkWell(
-          splashColor: secondaryColor.withValues(alpha: 0.6),
-          onTap: () {},
-          child: Center(child: Text(category.name)),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                primaryColor.withValues(alpha: 0.8),
+                primaryColor.withValues(alpha: 0.4),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: InkWell(
+            splashColor: secondaryColor.withValues(alpha: 0.6),
+            onTap: () {},
+            child: Center(child: Text(category.name)),
+          ),
         ),
       ),
     );
