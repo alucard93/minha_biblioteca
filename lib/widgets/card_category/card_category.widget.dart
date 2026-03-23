@@ -19,6 +19,7 @@ class CardCategory extends StatelessWidget {
                 ? DecorationImage(
                     image: AssetImage(category.filePath!),
                     fit: BoxFit.cover,
+                    opacity: 0.6,
                   )
                 : null,
             gradient: LinearGradient(
