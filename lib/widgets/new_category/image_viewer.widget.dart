@@ -32,9 +32,36 @@ class _ImageViewerState extends State<ImageViewer> {
         height: 100,
         width: double.infinity,
         decoration: BoxDecoration(border: Border.all(color: secondaryColor)),
-        child: file != null
-            ? Image.file(file!, fit: BoxFit.cover)
-            : Icon(Icons.image, color: primaryColor, size: 50),
+        child: file == null
+            ? Icon(Icons.image, color: primaryColor, size: 50)
+            : Stack(
+                children: [
+                  SizedBox(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: Image.file(file!, fit: BoxFit.cover),
+                  ),
+                  Positioned(
+                    right: 10,
+                    bottom: 10,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          file = null;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(Icons.delete, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
       ),
     );
   }
