@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:minha_biblioteca/model/category.model.dart';
 import 'package:minha_biblioteca/pages/home.page.dart';
 
-void main() {
+Future<void> initHive() async {
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(CategoryAdapter());
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initHive();
   runApp(const MyApp());
 }
 
