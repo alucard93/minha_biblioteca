@@ -32,7 +32,9 @@ class _ImageViewerState extends State<ImageViewer> {
         height: 100,
         width: double.infinity,
         decoration: BoxDecoration(border: Border.all(color: secondaryColor)),
-        child: Icon(Icons.image, color: primaryColor, size: 50),
+        child: file != null
+            ? Image.file(file!, fit: BoxFit.cover)
+            : Icon(Icons.image, color: primaryColor, size: 50),
       ),
     );
   }
