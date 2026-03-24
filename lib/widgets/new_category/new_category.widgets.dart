@@ -40,7 +40,16 @@ class _NewCategoryState extends State<NewCategory> {
               children: [
                 Row(
                   children: [
-                    Expanded(child: Text("Nova Categoria")),
+                    Expanded(
+                      child: Text(
+                        "Nova Categoria",
+                        style: TextStyle(
+                          color: primaryColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
                       icon: Icon(Icons.close),
@@ -54,6 +63,15 @@ class _NewCategoryState extends State<NewCategory> {
 
                 TextFormField(
                   controller: nameController,
+                  cursorColor: primaryColor,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text('Nome da categoria'),
+                    labelStyle: TextStyle(color: primaryColor),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: primaryColor),
+                    ),
+                  ),
                   validator: (value) {
                     if (value?.isEmpty ?? true) {
                       return "Obrigatório";
