@@ -20,7 +20,7 @@ class _ImageViewerState extends State<ImageViewer> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final image = await imagePicker.pickImage(source: ImageSource.gallery);
+        final image = await imagePicker.pickImage(source: ImageSource.camera);
 
         setState(() {
           if (image != null) {
