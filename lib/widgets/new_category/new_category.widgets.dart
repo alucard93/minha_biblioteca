@@ -20,7 +20,7 @@ class _NewCategoryState extends State<NewCategory> {
     await store.addCategory(nameController.text);
 
     if (!mounted) return;
-    
+
     Navigator.pop(context);
   }
 
@@ -105,8 +105,16 @@ class _NewCategoryState extends State<NewCategory> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
+                    style: ButtonStyle(
+                      overlayColor: WidgetStateProperty.all(
+                        primaryColor.withValues(alpha: 0.1),
+                      ),
+                    ),
                     onPressed: addCategory,
-                    child: const Text("Adicionar"),
+                    child: const Text(
+                      "Adicionar",
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
                 ),
               ],
