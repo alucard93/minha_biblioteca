@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:minha_biblioteca/colors.dart';
 import 'package:minha_biblioteca/widgets/new_category/add_category.store.dart';
 import 'package:minha_biblioteca/widgets/new_category/image_viewer.widget.dart';
@@ -16,7 +17,9 @@ class _NewCategoryState extends State<NewCategory> {
   final store = AddCategoryStore();
 
   void addCategory() async {
-    if (formKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) return;
+    if (store.isLoading) return;
+
     await store.addCategory(nameController.text);
 
     if (!mounted) return;
@@ -111,9 +114,15 @@ class _NewCategoryState extends State<NewCategory> {
                       ),
                     ),
                     onPressed: addCategory,
-                    child: const Text(
-                      "Adicionar",
-                      style: TextStyle(color: Colors.blue),
+                    child: Observer(
+                      builder: (context) {
+                        return store.isLoading
+                            ? const CircularProgressIndicator()
+                            : const Text(
+                                "Adicionar",
+                                style: TextStyle(color: Colors.blue),
+                              );
+                      },
                     ),
                   ),
                 ),

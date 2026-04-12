@@ -24,15 +24,18 @@ abstract class AddCategoryStoreBase with Store {
   @action
   Future<void> addCategory(String nameCategory) async {
     isLoading = true;
-    final repository = GetIt.I.get<CategoryRepository>();
+    try {
+      final repository = GetIt.I.get<CategoryRepository>();
 
-    await repository.addNewCategory(
-      Category(
-        id: DateTime.now().millisecond.toString(),
-        name: nameCategory,
-        filePath: imageCategory?.path,
-      ),
-    );
-    isLoading = false;
+      await repository.addNewCategory(
+        Category(
+          id: DateTime.now().millisecond.toString(),
+          name: nameCategory,
+          filePath: imageCategory?.path,
+        ),
+      );
+    } finally {
+      isLoading = false;
+    }
   }
 }
