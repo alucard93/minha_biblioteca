@@ -4,7 +4,7 @@ import 'package:minha_biblioteca/model/category.model.dart';
 class CategoryRepository {
   final Box<List> boxCategories;
 
-  CategoryRepository(this.boxCategories);
+  CategoryRepository({required this.boxCategories});
 
   Future<void> addNewCategory(Category category) async {
     final categories = boxCategories.get('categories', defaultValue: [])!;
