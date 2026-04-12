@@ -17,6 +17,10 @@ class _NewCategoryState extends State<NewCategory> {
 
   void addCategory() async {
     if (formKey.currentState!.validate()) return;
+    await store.addCategory(nameController.text);
+
+    if (!mounted) return;
+    
     Navigator.pop(context);
   }
 
