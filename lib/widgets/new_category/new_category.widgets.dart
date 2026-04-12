@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minha_biblioteca/colors.dart';
+import 'package:minha_biblioteca/widgets/new_category/add_category.store.dart';
 import 'package:minha_biblioteca/widgets/new_category/image_viewer.widget.dart';
 
 class NewCategory extends StatefulWidget {
@@ -12,6 +13,7 @@ class NewCategory extends StatefulWidget {
 class _NewCategoryState extends State<NewCategory> {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
+  final store = AddCategoryStore();
 
   void addCategory() async {
     if (formKey.currentState!.validate()) return;
@@ -89,9 +91,9 @@ class _NewCategoryState extends State<NewCategory> {
 
                 const SizedBox(height: 10),
 
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
-                  child: ImageViewer(),
+                  child: ImageViewer(store: store),
                 ),
 
                 const SizedBox(height: 10),
