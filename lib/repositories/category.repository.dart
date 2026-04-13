@@ -8,6 +8,7 @@ class CategoryRepository {
 
   Future<List<Category>> getAllCategories() async {
     final categories = boxCategories.get('categories', defaultValue: []);
+    await Future.delayed(const Duration(seconds: 1));
     return List<Category>.from(categories!);
   }
 

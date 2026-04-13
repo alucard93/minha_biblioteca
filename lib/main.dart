@@ -30,9 +30,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bem-vindo a sua biblioteca',
-      home: const HomePage(),
-    );
+    return MaterialApp(title: 'Bem-vindo a sua biblioteca', home: HomePage());
   }
 }

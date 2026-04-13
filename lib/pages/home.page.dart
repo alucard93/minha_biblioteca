@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:minha_biblioteca/colors.dart';
-import 'package:minha_biblioteca/model/category.model.dart';
+
+import 'package:minha_biblioteca/pages/home.store.dart';
 import 'package:minha_biblioteca/widgets/card_category/card_category.widget.dart';
 import 'package:minha_biblioteca/widgets/new_category/new_category.widgets.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final store = HomeStore();
+
+  HomePage({super.key}) {
+    GetIt.I.allReady().then((_) => store.getCategories());
+  }
 
   void newCategory(BuildContext ctx) async {
     await showModalBottomSheet(
@@ -16,6 +23,8 @@ class HomePage extends StatelessWidget {
         return const NewCategory();
       },
     );
+
+    store.getCategories();
   }
 
   @override
@@ -26,7 +35,7 @@ class HomePage extends StatelessWidget {
         title: const Text('Minha Biblioteca'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(12.0),
         child: Column(
           children: [
             Align(
@@ -44,19 +53,18 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 15),
 
             Expanded(
-              child: ListView(
-                children: [
-                  CardCategory(
-                    category: Category(
-                      id: "1",
-                      name: "Filmes",
-                      filePath: "assets/bg-filmes.jpg",
-                    ),
-                  ),
-                  CardCategory(
-                    category: Category(id: "2", name: "Series"),
-                  ),
-                ],
+              child: Observer(
+                builder: (context) {
+                  return store.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                          itemCount: store.categories.length,
+                          itemBuilder: (context, index) {
+                            final category = store.categories[index];
+                            return CardCategory(category: category);
+                          },
+                        );
+                },
               ),
             ),
           ],

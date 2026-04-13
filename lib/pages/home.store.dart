@@ -16,6 +16,7 @@ abstract class _HomeStoreBase with Store {
   @action
   Future<void> getCategories() async {
     isLoading = true;
+
     final repository = GetIt.I.get<CategoryRepository>();
 
     categories = (await repository.getAllCategories()).asObservable();

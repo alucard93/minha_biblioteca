@@ -16,7 +16,7 @@ class ImageViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        final image = await imagePicker.pickImage(source: ImageSource.camera);
+        final image = await imagePicker.pickImage(source: ImageSource.gallery);
 
         if (image != null) {
           store.setImage(File(image.path));

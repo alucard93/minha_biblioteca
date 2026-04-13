@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:minha_biblioteca/colors.dart';
 import 'package:minha_biblioteca/model/category.model.dart';
@@ -17,7 +19,7 @@ class CardCategory extends StatelessWidget {
           decoration: BoxDecoration(
             image: category.filePath != null
                 ? DecorationImage(
-                    image: AssetImage(category.filePath!),
+                    image: FileImage(File(category.filePath!)),
                     fit: BoxFit.cover,
                     opacity: 0.6,
                   )
