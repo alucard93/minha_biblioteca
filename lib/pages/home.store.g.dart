@@ -49,6 +49,15 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     return _$getCategoriesAsyncAction.run(() => super.getCategories());
   }
 
+  late final _$removeCategoryAsyncAction =
+      AsyncAction('_HomeStoreBase.removeCategory', context: context);
+
+  @override
+  Future<bool> removeCategory(String idCategory) {
+    return _$removeCategoryAsyncAction
+        .run(() => super.removeCategory(idCategory));
+  }
+
   @override
   String toString() {
     return '''

@@ -18,4 +18,11 @@ class CategoryRepository {
     await boxCategories.put('categories', categories);
     await Future.delayed(const Duration(seconds: 2));
   }
+
+  Future<void> removeCategory(String idCategory) async {
+    final categories = boxCategories.get('categories', defaultValue: [])!;
+    categories.removeWhere((category) => category.id == idCategory);
+    await boxCategories.put('categories', categories);
+    await Future.delayed(const Duration(seconds: 2));
+  }
 }

@@ -61,7 +61,28 @@ class HomePage extends StatelessWidget {
                           itemCount: store.categories.length,
                           itemBuilder: (context, index) {
                             final category = store.categories[index];
-                            return CardCategory(category: category);
+                            return Dismissible(
+                              key: ValueKey(category.id.toString()),
+                              direction: DismissDirection.endToStart,
+                              confirmDismiss: (direction) async {
+                                return store.removeCategory(category.id!);
+                              },
+                              background: Center(
+                                child: Container(
+                                  height: 114,
+                                  color: Colors.red,
+                                  alignment: Alignment.centerRight,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
+                                  child: const Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              child: CardCategory(category: category),
+                            );
                           },
                         );
                 },

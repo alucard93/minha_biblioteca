@@ -22,4 +22,13 @@ abstract class _HomeStoreBase with Store {
     categories = (await repository.getAllCategories()).asObservable();
     isLoading = false;
   }
+
+  @action
+  Future<bool> removeCategory(String idCategory) async {
+    final repository = GetIt.I.get<CategoryRepository>();
+    repository.removeCategory(idCategory);
+
+    categories.removeWhere((category) => category.id == idCategory);
+    return true;
+  }
 }
