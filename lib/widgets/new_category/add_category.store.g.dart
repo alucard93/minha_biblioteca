@@ -41,6 +41,14 @@ mixin _$AddCategoryStore on AddCategoryStoreBase, Store {
     });
   }
 
+  late final _$addCategoryAsyncAction =
+      AsyncAction('AddCategoryStoreBase.addCategory', context: context);
+
+  @override
+  Future<void> addCategory(String nameCategory) {
+    return _$addCategoryAsyncAction.run(() => super.addCategory(nameCategory));
+  }
+
   late final _$AddCategoryStoreBaseActionController =
       ActionController(name: 'AddCategoryStoreBase', context: context);
 

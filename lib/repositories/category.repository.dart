@@ -6,6 +6,11 @@ class CategoryRepository {
 
   CategoryRepository({required this.boxCategories});
 
+  Future<List<Category>> getAllCategories() async {
+    final categories = boxCategories.get('categories', defaultValue: []);
+    return List<Category>.from(categories!);
+  }
+
   Future<void> addNewCategory(Category category) async {
     final categories = boxCategories.get('categories', defaultValue: [])!;
     categories.add(category);
