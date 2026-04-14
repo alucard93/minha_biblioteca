@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:minha_biblioteca/colors.dart';
 import 'package:minha_biblioteca/model/category.model.dart';
+import 'package:minha_biblioteca/pages/contents/contents.page.dart';
 
 class CardCategory extends StatelessWidget {
   final Category category;
@@ -35,7 +36,14 @@ class CardCategory extends StatelessWidget {
           ),
           child: InkWell(
             splashColor: secondaryColor.withValues(alpha: 0.6),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ContentsPage(category: category),
+                ),
+              );
+            },
             child: Center(
               child: Text(
                 category.name,
