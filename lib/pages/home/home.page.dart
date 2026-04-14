@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:minha_biblioteca/colors.dart';
 
-import 'package:minha_biblioteca/pages/home.store.dart';
+import 'package:minha_biblioteca/pages/home/home.store.dart';
 import 'package:minha_biblioteca/widgets/card_category/card_category.widget.dart';
 import 'package:minha_biblioteca/widgets/new_category/new_category.widgets.dart';
 
