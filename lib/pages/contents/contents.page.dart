@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:minha_biblioteca/colors.dart';
 
 import 'package:minha_biblioteca/model/category.model.dart';
+import 'package:minha_biblioteca/widgets/add_content/add_content.widget.dart';
 import 'package:minha_biblioteca/widgets/card_content/card_content.widget.dart';
 
 class ContentsPage extends StatelessWidget {
@@ -74,7 +75,14 @@ class ContentsPage extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AddContent();
+            },
+          );
+        },
         backgroundColor: primaryColor,
         icon: const Icon(Icons.add, color: Colors.white),
         label: const Text(
