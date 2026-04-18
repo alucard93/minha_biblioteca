@@ -1,7 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ContentRepository {
-  final Box<List> _contentsBox;
+  final Box<List> _boxContents;
 
-  ContentRepository({required this._contentsBox});
+  ContentRepository({required Box<List> boxContents})
+    : _boxContents = boxContents;
 }

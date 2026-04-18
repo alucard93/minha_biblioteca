@@ -5,6 +5,7 @@ import 'package:minha_biblioteca/model/category.model.dart';
 import 'package:minha_biblioteca/model/content.model.dart';
 import 'package:minha_biblioteca/pages/home/home.page.dart';
 import 'package:minha_biblioteca/repositories/category.repository.dart';
+import 'package:minha_biblioteca/repositories/content.repository.dart';
 
 Future<void> initHive() async {
   await Hive.initFlutter();
@@ -17,6 +18,11 @@ void initServiceLocator() {
   GetIt.I.registerSingletonAsync<CategoryRepository>(() async {
     final box = await Hive.openBox<List>("categories");
     return CategoryRepository(boxCategories: box);
+  });
+
+  GetIt.I.registerSingletonAsync<ContentRepository>(() async {
+    final box = await Hive.openBox<List>("contents");
+    return ContentRepository(boxContents: box);
   });
 }
 

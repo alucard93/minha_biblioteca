@@ -11,5 +11,5 @@ class Content {
   @HiveField(2)
   final bool isChecked;
 
-  Content({required this.id, required this.name, required this.isChecked});
+  Content({required this.id, required this.name, this.isChecked = false});
 }
