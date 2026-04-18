@@ -49,6 +49,16 @@ mixin _$ContentsStore on _ContentsStoreBase, Store {
     return _$getContentsAsyncAction.run(() => super.getContents(categoryId));
   }
 
+  late final _$addNewContentAsyncAction =
+      AsyncAction('_ContentsStoreBase.addNewContent', context: context);
+
+  @override
+  Future<void> addNewContent(
+      {required String contentName, required String categoryId}) {
+    return _$addNewContentAsyncAction.run(() =>
+        super.addNewContent(contentName: contentName, categoryId: categoryId));
+  }
+
   @override
   String toString() {
     return '''

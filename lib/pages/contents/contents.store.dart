@@ -23,4 +23,19 @@ abstract class _ContentsStoreBase with Store {
 
     isLoading = false;
   }
+
+  @action
+  Future<void> addNewContent({
+    required String contentName,
+    required String categoryId,
+  }) async {
+    final repository = GetIt.I.get<ContentRepository>();
+    final content = Content(
+      id: DateTime.now().millisecond.toString(),
+      name: contentName,
+    );
+
+    await repository.addNewContent(categoryId: categoryId, content: content);
+    contents.add(content);
+  }
 }

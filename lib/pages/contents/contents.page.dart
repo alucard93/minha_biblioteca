@@ -11,7 +11,7 @@ import 'package:minha_biblioteca/widgets/card_content/card_content.widget.dart';
 class ContentsPage extends StatelessWidget {
   final Category category;
   final store = ContentsStore();
-  ContentsPage({super.key, required this.category}){
+  ContentsPage({super.key, required this.category}) {
     store.getContents(category.id);
   }
 
@@ -79,13 +79,19 @@ class ContentsPage extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          showDialog(
+        onPressed: () async {
+          final contentName = await showDialog(
             context: context,
             builder: (context) {
               return AddContent();
             },
           );
+          if (contentName != null) {
+            store.addNewContent(
+              contentName: contentName,
+              categoryId: category.id,
+            );
+          }
         },
         backgroundColor: primaryColor,
         icon: const Icon(Icons.add, color: Colors.white),
