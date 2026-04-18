@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:minha_biblioteca/colors.dart';
 
-class AddContent extends StatelessWidget {
+class AddContent extends StatefulWidget {
   const AddContent({super.key});
+
+  @override
+  State<AddContent> createState() => _AddContentState();
+}
+
+class _AddContentState extends State<AddContent> {
+  final contentController = TextEditingController();
+
+  @override
+  void dispose() {
+    contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +40,7 @@ class AddContent extends StatelessWidget {
             SizedBox(height: 30),
 
             TextField(
+              controller: contentController,
               decoration: InputDecoration(
                 labelText: 'Nome do conteúdo',
                 labelStyle: TextStyle(color: primaryColor),
@@ -46,7 +60,7 @@ class AddContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).pop(),
                   style: TextButton.styleFrom(foregroundColor: Colors.red),
                   child: Text("Cancelar"),
                 ),
@@ -61,7 +75,11 @@ class AddContent extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (contentController.text.isNotEmpty) {
+                      Navigator.of(context).pop(contentController.text);
+                    }
+                  },
                   child: Text(
                     "Adicionar",
                     style: TextStyle(color: Colors.white),

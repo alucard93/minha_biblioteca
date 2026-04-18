@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:minha_biblioteca/colors.dart';
+import 'package:minha_biblioteca/model/content.model.dart';
 
 class CardContent extends StatelessWidget {
-  const CardContent({super.key});
+  final Content content;
+  const CardContent({super.key, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CardContent extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Homem de ferro"),
+            Text(content.name),
             TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -33,7 +35,9 @@ class CardContent extends StatelessWidget {
                 foregroundColor: primaryColor,
               ),
               onPressed: () {},
-              child: Icon(Icons.visibility, color: Colors.green),
+              child: content.isChecked
+                  ? Icon(Icons.visibility, color: Colors.green)
+                  : Icon(Icons.visibility_off, color: Colors.red),
             ),
           ],
         ),
