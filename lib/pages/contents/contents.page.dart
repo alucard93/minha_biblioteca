@@ -67,7 +67,9 @@ class ContentsPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: CardContent(),
+                              child: CardContent(
+                                content: store.contents[index],
+                              ),
                             );
                           },
                         );
