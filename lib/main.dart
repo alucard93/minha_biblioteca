@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:minha_biblioteca/model/category.model.dart';
+import 'package:minha_biblioteca/model/content.model.dart';
 import 'package:minha_biblioteca/pages/home/home.page.dart';
 import 'package:minha_biblioteca/repositories/category.repository.dart';
 
@@ -9,6 +10,7 @@ Future<void> initHive() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(CategoryAdapter());
+  Hive.registerAdapter(ContentAdapter());
 }
 
 void initServiceLocator() {
