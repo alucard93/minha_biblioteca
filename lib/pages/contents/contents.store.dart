@@ -1,4 +1,6 @@
+import 'package:get_it/get_it.dart';
 import 'package:minha_biblioteca/model/content.model.dart';
+import 'package:minha_biblioteca/repositories/content.repository.dart';
 import 'package:mobx/mobx.dart';
 part 'contents.store.g.dart';
 
@@ -14,6 +16,11 @@ abstract class _ContentsStoreBase with Store {
   @action
   Future<void> getContents(String categoryId) async {
     isLoading = true;
+
+    final repository = GetIt.I.get<ContentRepository>();
+    final contentsTemp = await repository.getAllContents(categoryId);
+    contents = contentsTemp.asObservable();
+
     isLoading = false;
   }
 }

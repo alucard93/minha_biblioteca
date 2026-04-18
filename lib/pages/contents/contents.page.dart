@@ -4,12 +4,16 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:minha_biblioteca/colors.dart';
 
 import 'package:minha_biblioteca/model/category.model.dart';
+import 'package:minha_biblioteca/pages/contents/contents.store.dart';
 import 'package:minha_biblioteca/widgets/add_content/add_content.widget.dart';
 import 'package:minha_biblioteca/widgets/card_content/card_content.widget.dart';
 
 class ContentsPage extends StatelessWidget {
   final Category category;
-  const ContentsPage({super.key, required this.category});
+  final store = ContentsStore();
+  ContentsPage({super.key, required this.category}){
+    store.getContents(category.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +43,10 @@ class ContentsPage extends StatelessWidget {
             Expanded(
               child: Observer(
                 builder: (context) {
-                  return false
+                  return store.isLoading
                       ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
-                          itemCount: 5,
+                          itemCount: store.contents.length,
                           itemBuilder: (context, index) {
                             return Dismissible(
                               key: UniqueKey(),
