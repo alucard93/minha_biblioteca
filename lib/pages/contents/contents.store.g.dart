@@ -59,6 +59,16 @@ mixin _$ContentsStore on _ContentsStoreBase, Store {
         super.addNewContent(contentName: contentName, categoryId: categoryId));
   }
 
+  late final _$removeContentAsyncAction =
+      AsyncAction('_ContentsStoreBase.removeContent', context: context);
+
+  @override
+  Future<bool> removeContent(
+      {required String contentId, required String categoryId}) {
+    return _$removeContentAsyncAction.run(() =>
+        super.removeContent(contentId: contentId, categoryId: categoryId));
+  }
+
   @override
   String toString() {
     return '''

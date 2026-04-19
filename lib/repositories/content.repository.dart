@@ -13,10 +13,39 @@ class ContentRepository {
     return List<Content>.from(contents!);
   }
 
-  Future<void> addNewContent({required String categoryId, required Content content}) async {
+  Future<void> addNewContent({
+    required String categoryId,
+    required Content content,
+  }) async {
     final contents = await getAllContents(categoryId);
     contents.add(content);
     await _boxContents.put("contents:$categoryId", contents);
-    
+  }
+
+  Future<void> updateContent({
+    required String categoryId,
+    required String contentId,
+    required bool isChecked,
+  }) async {
+    final contents = await getAllContents(categoryId);
+
+    final indexContent = contents.indexWhere(
+      (content) => content.id == contentId,
+    );
+
+    contents[indexContent] = contents[indexContent].copyWith(
+      isChecked: isChecked,
+    );
+
+    await _boxContents.put("contents:$categoryId", contents);
+  }
+
+  Future<void> removeContent({
+    required String categoryId,
+    required String contentId,
+  }) async {
+    final contents = await getAllContents(categoryId);
+    contents.removeWhere((content) => content.id == contentId);
+    await _boxContents.put("contents:$categoryId", contents);
   }
 }

@@ -12,4 +12,12 @@ class Content {
   final bool isChecked;
 
   Content({required this.id, required this.name, this.isChecked = false});
+
+  Content copyWith({String? id, String? name, bool? isChecked}) {
+    return Content(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      isChecked: isChecked ?? this.isChecked,
+    );
+  }
 }

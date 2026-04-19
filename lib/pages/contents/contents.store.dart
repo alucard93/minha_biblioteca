@@ -38,4 +38,19 @@ abstract class _ContentsStoreBase with Store {
     await repository.addNewContent(categoryId: categoryId, content: content);
     contents.add(content);
   }
+
+  @action
+  Future<bool> removeContent({
+    required String contentId,
+    required String categoryId,
+  }) async {
+    final repository = GetIt.I.get<ContentRepository>();
+    await repository.removeContent(
+      categoryId: categoryId,
+      contentId: contentId,
+    );
+
+    contents.removeWhere((content) => content.id == contentId);
+    return true;
+  }
 }

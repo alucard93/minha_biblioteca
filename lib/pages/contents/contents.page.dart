@@ -46,13 +46,18 @@ class ContentsPage extends StatelessWidget {
                   return store.isLoading
                       ? const Center(child: CircularProgressIndicator())
                       : ListView.builder(
+                        
                           itemCount: store.contents.length,
                           itemBuilder: (context, index) {
+                            final content = store.contents[index];
                             return Dismissible(
-                              key: UniqueKey(),
+                              key: ValueKey(content.id),
                               direction: DismissDirection.endToStart,
                               confirmDismiss: (direction) async {
-                                return true;
+                                return store.removeContent(
+                                  contentId: content.id,
+                                  categoryId: category.id,
+                                );
                               },
                               background: Center(
                                 child: Container(
@@ -68,6 +73,7 @@ class ContentsPage extends StatelessWidget {
                                 ),
                               ),
                               child: CardContent(
+                                categoryId: category.id,
                                 content: store.contents[index],
                               ),
                             );
